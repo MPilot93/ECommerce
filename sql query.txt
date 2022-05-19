@@ -1,0 +1,50 @@
+use ECommerce
+create table [dbo].[Product](
+[Id][int] not null,
+[C8][int] identity (1,1) not null,
+[Description] [nvarchar],
+[Title] [nvarchar] not null,
+[UrlImg] [nvarchar] not null,
+primary key (C8))
+
+
+create table [dbo].[Prices](
+[Cod][int] identity (1,1) not null,
+[C8] [int] not null,
+[Price] [float] not null,
+[Country] [nvarchar] not null,
+[Currency][nvarchar] not null,
+primary key (Cod),
+foreign key(C8) references Product(C8)
+)
+
+create table [dbo].[Orders](
+
+[IdOrder][int] identity (1,1) not null,
+[IdCust] [int] not null,
+[C8] [int] not null,
+[Price] [float] not null,
+[Date] [datetime] not null,
+primary key (IdOrder),
+foreign key(C8) references Product(C8)
+
+)
+
+create table [dbo].[Customer](
+
+[IdCust][int]  identity (1,1) not null,
+[mail] [nvarchar]not null,
+[Name] [nvarchar] not null,
+[Surname] [nvarchar] not null,
+[Birth] [datetime] not null,
+primary key (IdCust))
+
+select * from Product
+select * from Prices
+select * from Orders
+select * from Customer
+
+drop table Product
+drop table Prices
+drop table Orders
+drop table Customer
